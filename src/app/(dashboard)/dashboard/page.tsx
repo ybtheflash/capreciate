@@ -12,8 +12,6 @@ export default async function DashboardPage() {
     data: { session },
   } = await supabase.auth.getSession();
 
-  console.log("Session data:", session); // Add this line for debugging
-
   // If user is not logged in, redirect to login
   if (!session) {
     redirect("/login");

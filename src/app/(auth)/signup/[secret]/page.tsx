@@ -11,7 +11,7 @@ const SIGNUP_SECRET = process.env.SIGNUP_SECRET;
 export default async function SignupPage({
   params,
 }: {
-  params: { secret: string };
+  params: Promise<{ secret: string }>;
 }) {
   const supabase = await createClientSupabaseClient();
   const {
