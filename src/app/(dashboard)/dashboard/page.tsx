@@ -1,30 +1,29 @@
-import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { createClientSupabaseClient } from "@/lib/supabase-client";
-import AppreciationForm from "@/components/appreciation/appreciation-form";
+import { createServerSupabaseClient } from "@/lib/supabase-client";
+import EmployeeDashboard from "@/components/dashboard/employee-dashboard";
 import { Button } from "@/components/ui/button";
 import { Particles } from "@/components/magicui/particles";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 import Link from "next/link";
 import Image from "next/image";
+import { LogOut } from "lucide-react";
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: { ref?: string };
-}) {
-  const supabase = await createClientSupabaseClient();
+export default async function DashboardPage() {
+  const supabase = await createServerSupabaseClient();
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  // If user is logged in, redirect to dashboard
-  if (session) {
-    redirect("/dashboard");
+  // If user is not logged in, redirect to login
+  if (!session) {
+    redirect("/login");
   }
 
-  // Get referral ID if present
-  const referralId = (await searchParams).ref || "";
+  // Get user profile
+  const { data: profile } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", session.user.id)
+    .single();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -40,7 +39,7 @@ export default async function HomePage({
 
         <div className="relative z-10 container mx-auto px-4 py-6 flex flex-col items-center">
           <div className="flex items-center justify-between w-full mb-6">
-            <div className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2">
               <Image
                 src="/capgemini-logo.png"
                 alt="Capgemini Logo"
@@ -53,22 +52,27 @@ export default async function HomePage({
                   Appreciate Capgemini Excellence
                 </p>
               </div>
-            </div>
+            </Link>
 
-            <div className="flex items-center space-x-4">
-              <ThemeToggle />
-              <Link href="/login">
-                <Button>Login</Button>
-              </Link>
-            </div>
+            <form action="/auth/signout" method="post">
+              <Button variant="outline" size="sm" type="submit">
+                <LogOut className="h-4 w-4 mr-2" />
+                Sign Out
+              </Button>
+            </form>
+          </div>
+
+          <div className="text-center max-w-3xl mx-auto my-8">
+            <h2 className="text-3xl font-bold mb-2">
+              Welcome, {profile?.full_name}
+            </h2>
+            <p className="text-muted-foreground">{session.user.email}</p>
           </div>
         </div>
       </header>
 
       <main className="flex-grow container mx-auto px-4 py-8">
-        <Suspense fallback={<div>Loading...</div>}>
-          <AppreciationForm employeeId={referralId} />
-        </Suspense>
+        <EmployeeDashboard userId={session.user.id} />
       </main>
 
       <footer className="py-6 border-t">
@@ -76,7 +80,7 @@ export default async function HomePage({
           <p className="text-sm text-muted-foreground">
             Crafted with care by{" "}
             <a
-              href="https://www.linkedin.com/in/prince-biswas-"
+              href="https://www.linkedin.com/in/princebiswas"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium hover:underline"
