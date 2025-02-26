@@ -11,7 +11,7 @@ import Image from "next/image";
 export default async function HomePage({
   searchParams,
 }: {
-  searchParams: { ref?: string };
+  searchParams: Promise<{ ref?: string }>;
 }) {
   const supabase = await createClientSupabaseClient();
   const {
@@ -23,8 +23,8 @@ export default async function HomePage({
     redirect("/dashboard");
   }
 
-  // Get referral ID if present
-  const referralId = (await searchParams).ref || "";
+  // Await searchParams before using its properties
+  const { ref: referralId = "" } = await searchParams;
 
   return (
     <div className="min-h-screen flex flex-col">
