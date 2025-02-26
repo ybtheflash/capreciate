@@ -50,9 +50,9 @@ export default async function LoginPage() {
           </div>
 
           <div className="ml-2">
-            <h1 className="text-2xl font-bold">Capreciate</h1>
+            <h1 className="text-2xl font-bold">Kudos</h1>
             <p className="text-sm text-muted-foreground">
-              Appreciate Capgemini Excellence
+              Appreciate Footlocker Excellence
             </p>
           </div>
         </Link>

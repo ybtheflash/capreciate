@@ -1,8 +1,8 @@
-export const capgeminiColors = {
-    primary: "#0070AD", // Capgemini blue
-    secondary: "#12ABDB", // Capgemini light blue
-    accent: "#2B0A3D", // Capgemini purple
-    highlight: "#A100FF", // Capgemini bright purple
-    dark: "#1E0E34", // Dark purple for dark mode
-    light: "#F2F2F2", // Light gray for light mode
+export const footlockerColors = {
+    primary: "#E52935", // Foot Locker red
+    secondary: "#000000", // Black
+    accent: "#161413", // Chinese Black (darker variant)
+    highlight: "#ee293d", // Alternate Foot Locker red
+    dark: "#000000", // Black for dark mode
+    light: "#FFFFFF", // White for light mode
 };

@@ -155,7 +155,7 @@ export default function AppreciationForm({ employeeId = "" }) {
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle>Appreciate a Capgemini Employee</CardTitle>
+        <CardTitle>Appreciate a Foot Locker Employee</CardTitle>
         <CardDescription>
           Let them know how they&apos;ve made a difference!
         </CardDescription>

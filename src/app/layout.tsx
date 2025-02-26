@@ -6,9 +6,9 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Capreciate - Appreciate Capgemini Excellence",
+  title: "Kudos - Appreciate Footlocker Excellence",
   description:
-    "Recognize and appreciate Capgemini employees who have made a difference.",
+    "Recognize and appreciate Footlocker employees who have made a difference.",
 };
 
 export default function RootLayout({

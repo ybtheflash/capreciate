@@ -28,10 +28,10 @@ export default function SignupForm() {
     e.preventDefault();
     setLoading(true);
 
-    // Validate Capgemini email
-    if (!email.endsWith("@capgemini.com")) {
+    // Validate Foot Locker email
+    if (!email.endsWith("@footlocker.com")) {
       toast.error("Invalid email", {
-        description: "You must use a Capgemini email address",
+        description: "You must use a Foot Locker email address",
       });
       setLoading(false);
       return;
@@ -53,7 +53,7 @@ export default function SignupForm() {
       }
 
       toast.success("Account created", {
-        description: "Please check your email to verify your account",
+        description: "Please go to the login page to view your account",
       });
 
       router.push("/login");
@@ -92,7 +92,7 @@ export default function SignupForm() {
             <Input
               id="email"
               type="email"
-              placeholder="your.name@capgemini.com"
+              placeholder="your.name@footlocker.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

@@ -23,8 +23,11 @@ export default async function SignupPage({
     redirect("/dashboard");
   }
 
+  // Await params before using its properties
+  const { secret } = await params;
+
   // Verify the secret key
-  if (params.secret !== SIGNUP_SECRET) {
+  if (secret !== SIGNUP_SECRET) {
     notFound();
   }
 
@@ -48,9 +51,9 @@ export default async function SignupPage({
             height={40}
           />
           <div>
-            <h1 className="text-2xl font-bold">Capreciate</h1>
+            <h1 className="text-2xl font-bold">Kudos</h1>
             <p className="text-sm text-muted-foreground">
-              Appreciate Capgemini Excellence
+              Appreciate Footlocker Excellence
             </p>
           </div>
         </Link>

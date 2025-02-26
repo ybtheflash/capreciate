@@ -40,9 +40,10 @@ export default function LoginForm() {
       toast.success("Login successful", {
         description: "Welcome back!",
       });
-
-      router.push("/dashboard");
-      router.refresh();
+      router.refresh(); // Add this line
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 500);
     } catch (error: unknown) {
       const errorMessage =
         error instanceof Error ? error.message : "An unexpected error occurred";
@@ -59,7 +60,7 @@ export default function LoginForm() {
       <CardHeader>
         <CardTitle>Login</CardTitle>
         <CardDescription>
-          Enter your Capgemini email and password to access your dashboard
+          Enter your Foot Locker email and password to access your dashboard
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -69,7 +70,7 @@ export default function LoginForm() {
             <Input
               id="email"
               type="email"
-              placeholder="your.name@capgemini.com"
+              placeholder="your.name@footlocker.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

@@ -63,16 +63,14 @@ export default function MainLayout({
                   width={40}
                   height={40}
                 />
-                <p className="text-xs text-muted-foreground mt-1">
+                {/* <p className="text-xs text-muted-foreground mt-1">
                   more than sneakers.
-                </p>
+                </p> */}
               </div>
 
               <div className="ml-2">
-                <h1 className="text-2xl font-bold">Capreciate</h1>
-                <p className="text-sm text-muted-foreground">
-                  Appreciate Capgemini Excellence
-                </p>
+                <h1 className="text-2xl font-bold">Kudos</h1>
+                <p className="text-sm text-muted-foreground">by Foot Locker</p>
               </div>
             </Link>
 
